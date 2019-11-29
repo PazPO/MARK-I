@@ -1,5 +1,9 @@
 'use strict';
 
+const { Pool } = require('pg');
+
+const postgresConfig = require('./secret');
+
 function registration(form) {
   let reason = '';
 
@@ -11,14 +15,7 @@ function registration(form) {
   }
 
   if (reason == '') {
-    const { Pool } = require('pg');
-    pool = new Pool({
-      host: 'localhost',
-      port: 5432,
-      database: 'node_hero',
-      user: 'postgres',
-      password: '179289',
-    });
+    pool = new Pool(postgresConfig);
 
     // // добавление объекта
     const sql = 'INSERT INTO users (name, password) VALUES($1, $2)';
@@ -45,14 +42,7 @@ function authorization(form) {
     reason += 'Error password ';
 
   if (reason == '') {
-    const { Pool } = require('pg');
-    pool = new Pool({
-      host: 'localhost',
-      port: 5432,
-      database: 'node_hero',
-      user: 'postgres',
-      password: '179289',
-    });
+    pool = new Pool(postgresConfig);
 
     pool.query('SELECT * FROM users', function(err, results) {
       if (err) console.log(err);
