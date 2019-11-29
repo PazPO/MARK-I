@@ -1,37 +1,30 @@
 'use strict';
 
+// Modules
 const { Pool } = require('pg');
 
-const postgresConfig = require('./secret');
+// Configs
+const { postgresConfig } = require('./secret');
 
-function registration(form) {
-  let reason = '';
+const registration = ({ username, password }) => {
+  const checkedUsername =
+    username && /[^a-zA-z]/.test(username) ? username : undefined;
+  const checkedPassword =
+    password && /[^0-9]/.test(password) ? password : undefined;
 
-  if (form.username.value == '' || /[^a-zA-z]/.test(form.username.value)) {
-    reason = reason + 'Error login ';
-  }
-  if (form.password.value == '' || /[^0-9]/.test(form.password.value)) {
-    reason = reason + 'Error password ';
-  }
+  if (checkedUsername && checkedPassword) {
+    const pool = new Pool(postgresConfig);
 
-  if (reason == '') {
-    pool = new Pool(postgresConfig);
-
-    // // добавление объекта
+    // добавление записи в базу данных
     const sql = 'INSERT INTO users (name, password) VALUES($1, $2)';
-    const data = [name, password];
-    pool.query(sql, data, function(err, results) {
-      if (err) console.log(err);
-      console.log(results);
-    });
+    const userData = [name, password];
+    pool.query(sql, userData, (err, results) =>
+      err ? console.error(err) : console.info(results),
+    );
     pool.end();
-    alert('Process end');
-
-    return true;
-  } else {
-    return false;
+    console.info('Process end');
   }
-}
+};
 
 function authorization(form) {
   const reason = '';
