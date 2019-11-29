@@ -9,8 +9,7 @@ function registration(form) {
 		reason =reason+ "Error password ";}
 		
         if (reason == ""){
-			alert("Process begin");	
-			let { Pool } = require('./pg');
+			const { Pool } = require('pg');
 			pool =new Pool({
 			host:'localhost',
 			port:5432,
@@ -29,8 +28,7 @@ function registration(form) {
 				alert("Process end");	
 			
 		return true;} 
-        else {
-            alert(reason);  
+        else {  
             return false;
         }
     }
@@ -48,7 +46,7 @@ function registration(form) {
 					
 				
 				
-			let { Pool } = require('./pg');
+			const { Pool } = require('pg');
 			pool =new Pool({
 			host:'localhost',
 			port:5432,
