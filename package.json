@@ -1,0 +1,23 @@
+{
+  "name": "mark-i",
+  "version": "0.0.1",
+  "description": "Some description",
+  "main": "server.js",
+  "scripts": {
+    "start:client": "node node-client.js",
+    "start:server": "node node-server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NikolasMelui/MARK-I.git"
+  },
+  "author": "somenickname",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NikolasMelui/MARK-I/issues"
+  },
+  "homepage": "https://github.com/NikolasMelui/MARK-I#readme",
+  "dependencies": {
+    "pg": "^7.14.0"
+  }
+}
