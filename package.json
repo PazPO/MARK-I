@@ -18,6 +18,6 @@
   },
   "homepage": "https://github.com/NikolasMelui/MARK-I#readme",
   "dependencies": {
-    "pg": "^7.14.0"
+    "pg": "^8.11.0"
   }
 }
